@@ -9,7 +9,8 @@ import Landing from "@/pages/landing";
 import Home from "@/pages/home";
 import Catalog from "@/pages/catalog";
 import ProductDetail from "@/pages/product-detail";
-import Checkout from "@/pages/checkout";
+import Cart from "@/pages/cart";
+import Checkout from "@/pages/checkout-new";
 import Dashboard from "@/pages/dashboard";
 import Admin from "@/pages/admin";
 import Navbar from "@/components/layout/navbar";
@@ -26,18 +27,13 @@ function Router() {
       
       <main className="flex-1">
         <Switch>
-          {isLoading || !isAuthenticated ? (
-            <Route path="/" component={Landing} />
-          ) : (
-            <>
-              <Route path="/" component={Home} />
-              <Route path="/catalog" component={Catalog} />
-              <Route path="/product/:id" component={ProductDetail} />
-              <Route path="/checkout" component={Checkout} />
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/admin" component={Admin} />
-            </>
-          )}
+          <Route path="/" component={isLoading || !isAuthenticated ? Landing : Home} />
+          <Route path="/catalog" component={Catalog} />
+          <Route path="/product/:id" component={ProductDetail} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/admin" component={Admin} />
           <Route component={NotFound} />
         </Switch>
       </main>
